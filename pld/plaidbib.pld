@@ -1,0 +1,46 @@
+Name     plaidbib ;
+PartNo   00 ;
+Date     8/22/2019 ;
+Revision 01 ;
+Designer TubeTimeUS ;
+Company    ;
+Assembly None ;
+Location U4 ;
+Device   g16v8a ;
+
+
+/* *************** INPUT PINS *********************/
+PIN 1   = !ADL                    ; /* Address latch                   */ 
+PIN 2   = CDEN                    ; /* Card Enabled                    */ 
+PIN 3   = A1A2                    ; /* Address lines A1=A2=0           */ 
+PIN 4   = !MATCH103HI             ; /* A4, A5, A6 match POS register   */ 
+PIN 5   = !MATCHA                 ; /* A7, A8 match POS register       */ 
+PIN 6   = A10A11A12               ; /* Address lines A10=A11=A12=0     */ 
+PIN 7   = A13A14A15               ; /* Address lines A13=A14=A15=0     */ 
+PIN 8   = A3                      ; /* State of address line A3        */ 
+PIN 9   = A9                      ; /* State of address line A9        */ 
+PIN 11  = !IO                     ; /* Address is for IO dev           */ 
+PIN 13  = A0                      ; /* Address line A0                 */ 
+PIN 16  = CHRESET                 ; /* Channel reset                   */ 
+PIN 17  = !101RD                  ; /* POS register 101 being read     */ 
+PIN 18  = !100RD                  ; /* POS register 100 being read     */ 
+
+/* *************** OUTPUT PINS *********************/
+PIN 12  = !YM_IC                  ; /*  Assert to reset Yamaha         */ 
+PIN 14  = YM_A0                   ; /*  Yamaha address line A0         */ 
+PIN 15  = !CDSEL                  ; /*  Assert when card addressed     */ 
+PIN 19  = !ID_OE                  ; /*  Places POS reg 100/101 on bus  */ 
+
+/* Latch YM_A0 when ADL gets asserted and the card is selected */
+YM_A0    = !(YM_AN # (!A0 & ADL & CDSEL));
+YM_AN    = !(YM_A0 # (A0 & ADL & CDSEL));
+
+YM_IC    = CHRESET;
+
+CDSEL    = CDEN & A1A2 & MATCH103HI & MATCHA & A10A11A12 & A13A14A15 & A3 & A9 & IO;
+ID_OE    = 101RD # 100RD; /* Turn on POS buffer when reading POS register 100 or 101 */
+
+/*
+ORDER  ADL, CDEN, A1A2, MATCH103HI, MATCHA, A10A11A12, A13A14A15, A3, A9, IO, A0, CHRESET, 101RD, 100RD, YM_IC, YM_A0, CDSEL, ID_OE;
+VECTORS  
+*/
