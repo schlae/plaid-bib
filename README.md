@@ -106,3 +106,7 @@ the ADF file. After the setup utility configures the card, it will prompt
 you to reboot the machine.
 
 Once that's finished, try out the Plaid Bib with your favorite game!
+
+## License
+This work is licensed under a Creative Commons Attribution-ShareAlike 4.0
+International License. See [https://creativecommons.org/licenses/by-sa/4.0/](https://creativecommons.org/licenses/by-sa/4.0/).
