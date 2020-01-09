@@ -1,8 +1,8 @@
 # The Plaid Bib - an Ad Lib MCA Clone
 
 **This card uses the P82C611 bus interface chip and will not work with faster
-MCA systems. For a more widely-compatible version, use the Plaid Bib CPLD
-version (to be released soon).**
+MCA systems. For a more widely-compatible version, use the [Plaid Bib CPLD
+version](https://github.com/schlae/plaid-bib-cpld).**
 
 The Plaid Bib is a 100% compatible clone of the Ad Lib MCA sound card. This is
 an Ad Lib card designed for Micro Channel Architecture machines, such as the
